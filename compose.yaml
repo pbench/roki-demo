@@ -1,0 +1,53 @@
+version: "3"
+services:
+  roki:
+    image: pbench/roki:latest
+    volumes:
+      - ./data/:/data
+    ports:
+      - 3000:3000
+      - 3001:3001
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    depends_on:
+      gtfs_rt_feed_server:
+        condition: service_healthy
+
+  # a simple server that will be used by roki to download the protobuf files in ./data/gtfs_rt/
+  # see https://pythonbasics.org/webserver/
+  gtfs_rt_feed_server:
+    image: python:3
+    volumes: 
+      - ./data/gtfs_rt:/data
+    working_dir: /data
+    entrypoint: python3 -m http.server 8001
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    ports:
+      - 8001:8001
+
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    volumes:
+      - ./grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+      - ./grafana/dashboard_provider.yaml:/etc/grafana/provisioning/dashboards/dashboard_provider.yaml
+      - ./grafana/dashboard.json:/var/lib/grafana/dashboards/dashboard.json
+    ports:
+     - '3010:3000'
+
+  prometheus:
+    image: prom/prometheus
+    volumes: 
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* body {
+        font: 1em sans-serif;
+        width: 200px;
+        padding: 0;
+        margin : 0 auto;
+      }
+
+      p * {
+        display: block;
+      } */
+
+      .param-span{
+        border-color: hsla(106, 71%, 60%, 0.747);
+        border-radius: 0.25em 0.25em 0 0;
+
+        /* display: flex;
+        flex-flow: row nowrap;
+        align-items: stretch;
+        width: auto;
+        margin: 0 1em 1.25em 0;
+        padding: 0; */
+        line-height: 1.2em;
+        background-color: white;
+        border-style: solid;
+        border-width: 0.2em 0.2em 0.2em 0.2em ;
+      }
+
+      .param-key{
+        background-color:hsla(106, 71%, 60%, 0.445);
+
+        /* background-color:rgb(100, 168, 79); */
+        padding: 0.5em;
+        font-weight: bold;
+        border-radius: 0.25em 0 0 0;
+      }
+
+      .param-subkey{
+        background-color: rgb(78, 173, 48);
+        padding: 0.5em;
+        font-weight: normal;
+        border-radius: 0.25em 0 0 0;
+      }
+
+      .journey-span{
+        border-color: hsl(48.75deg, 100%, 45%);
+        margin: 0.5em 0 0.5em 1em;
+        padding: 0;
+        border-style: solid;
+        border-width: 0.2em 0.2em 0.2em 0.2em;
+      }
+
+      .journey-key{
+        background-color:  hsl(48.75deg, 100%, 93%);
+        padding: 0.5em;
+        font-weight: bold;
+        border-radius: 0.25em 0 0 0;
+      }
+
+      .leg-span{
+        border-color: hsl(192, 50%, 54%);
+        margin: 0.1em 0 0.1em 1em;
+        padding: 0;
+        border-style: solid;
+        border-width: 0 0 0.2em 0.2em;
+      }
+
+      .leg-key{
+        background-color: hsla(192, 50%, 54%, 0.61);
+        padding: 0.5em;
+        font-weight: bold;
+        border-radius: 0.25em 0 0 0;
+      }
+
+      .leg-subkey{
+        background-color: hsla(192, 60%, 48%, 0.61);
+        padding: 0.5em;
+        font-weight: normal;
+        border-radius: 0.25em 0 0 0;
+      }
+
+
+      .map-focus{
+        position: 'fixed';
+        top: 0;
+        left: 0;
+        height: '100%';
+        width: '100%';
+      }
+
+      /* This is our style for the invalid fields */
+      input:invalid{
+        border-color: #900;
+        background-color: #FDD;
+      }
+
+      input:focus:invalid {
+        outline: none;
+      }
+
+      /* This is the style of our error messages */
+      .error {
+        width  : 100%;
+        padding: 0;
+
+        font-size: 80%;
+        color: white;
+        background-color: #900;
+        border-radius: 0 0 5px 5px;
+
+        box-sizing: border-box;
+      }
+
+      .error.active {
+        padding: 0.3em;
+      }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <link rel="modulepreload" href="/playground-f3d35c3aafb479f5.js" crossorigin="anonymous" integrity="sha384-kJn+yoKG4Uph0Fw43WhL2bltmY8ifd3D2EmE/ZTQV+S1TvC3WcLmmNDGUlbn2KE6"><link rel="preload" href="/playground-f3d35c3aafb479f5_bg.wasm" crossorigin="anonymous" integrity="sha384-fLR+F8jRRNV1R6gDiY+koqeiWz79odRjzTvmfGogjLVB/x1nAiYhsHDPQsQxDAKq" as="fetch" type="application/wasm"></head>
+  <body>
+<script type="module">
+import init, * as bindings from '/playground-f3d35c3aafb479f5.js';
+const wasm = await init({ module_or_path: '/playground-f3d35c3aafb479f5_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script></body>
+</html>

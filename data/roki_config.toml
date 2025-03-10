@@ -1,0 +1,86 @@
+# number of threads that can handle requests in parallel
+nb_of_workers = 2
+
+# Maximum number of in-flight Range and Journey requests that can be waiting
+# for a worker to become available.
+# When this limit is reached, additionnal incoming requests
+# will be rejected with a 429 TOO_MANY_REQUESTS response
+requests_buffer_size = 100
+
+# Maximum number of in-flight Status and Health requests that can be waiting
+# for a response.
+# When this limit is reached, additionnal incoming requests
+# will be rejected with a 429 TOO_MANY_REQUESTS response
+status_requests_buffer_size = 10
+
+[http]
+# on which http address to listen for Range and Journey requests
+address = "0.0.0.0:3000"
+# timeout for Range and Journey requests
+request_timeout = "10s"
+# on which http address to listen for tech requests (Status, Health and Metrics)
+tech_address = "0.0.0.0:3001"
+# timeout for tech requests
+tech_request_timeout = "1s"
+
+
+
+[data_source]
+# List of paths to the gtfs data to read.
+# Each path should point to either a directory or a zip file.
+# All gtfs will be merged. If some identical identifiers for stop/trip/route/agency are found
+# in different gtfs, the first one encountered will be kept.
+gtfs_paths = [
+    "/data/ter.zip",
+    "/data/tgv.zip",
+    "/data/intercites.zip",
+    "/data/transfers/"
+]
+
+[data]
+# If not present in the gtfs files, a default transfer will be inserted between :
+# - every stop and itself
+# - every pair of stops that belongs to the same station
+# The inserted transfer will have 0 duration, but will enforce
+# the default_transfer_wait_duration between the debarking of the previous trip
+# and the boarding of the next trip.
+default_transfer_wait_duration="60s"
+
+
+# default config for range request
+[range]
+range_duration="24h"
+criteria = "time_and_legs"
+datetime_represents = "departure"
+realtime_level = "realtime"
+max_nb_of_legs=4
+max_journey_duration="1d"
+transfer_min_wait_duration ="0s"
+max_duration_from_requested_datetime = "3d"
+max_wait_duration = "18h"
+overnight_fence = { enable="enabled", time_in_day = "03:10:00", timezone = "Europe/Paris"}
+
+
+[realtime]
+# How often do we apply the latest realtime information retreived.
+apply_interval = "1m"
+
+# Specify the list of gtfs-rt trip update feeds to retreive.
+# Each feed must have a name and an url.
+# We can also specify how often this feed will be refreshed, and the timeout for the http call to retreive the feed.
+trip_update = [
+    { name = "tgv", url= "http://gtfs_rt_feed_server:8001/sncf-tgv-gtfs-rt-trip-updates", refresh_interval = "2m", http_call_timeout = "10s"},
+    { name = "ter", url= "http://gtfs_rt_feed_server:8001/sncf-ter-gtfs-rt-trip-updates"},
+    { name = "intercites", url="http://gtfs_rt_feed_server:8001/sncf-ic-gtfs-rt-trip-updates"}
+]
+# Specify the list of gtfs-rt service alerts feeds to retreive.
+# Each feed must have a name and an url.
+# We can also specify how often this feed will be refreshed, and the timeout for the http call to retreive the feed.
+# We can also specify a list of "prefix_ends". This is used for a service alert feed which provides truncated identifiers for trips.
+# For example, when a service alert concerns a trip with id "OCESN891208F", and we have "F" present in prefix_ends,
+# then this service alert will match with every trip in the gtfs whose identifier :
+# - contains a "F", and 
+# - the part of the trip identifier before the last "F" is equal to "OCESN891208"
+service_alert = [
+    { name = "scnf-sa", url= "http://gtfs_rt_feed_server:8001/sncf-gtfs-rt-service-alerts", prefix_ends=["F", "R"], refresh_interval = "2m", http_call_timeout = "10s"},
+]
