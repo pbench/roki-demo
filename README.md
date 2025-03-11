@@ -31,6 +31,7 @@ roki-proto/roki.proto
 
 Look at the demo.py an the protobuf file to understand how requests are made, and how responses should be read.
 
+The web interface https://pbench.github.io/roki-demo/ allows to make requests to your roki container.
 
 ## Get more recent gtfs data
 
