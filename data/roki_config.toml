@@ -56,7 +56,7 @@ realtime_level = "realtime"
 max_nb_of_legs=4
 max_journey_duration="1d"
 transfer_min_wait_duration ="0s"
-max_duration_from_requested_datetime = "3d"
+max_duration_from_requested_datetime = "2d"
 max_wait_duration = "18h"
 overnight_fence = { enable="enabled", time_in_day = "03:10:00", timezone = "Europe/Paris"}
 

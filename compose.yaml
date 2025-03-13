@@ -36,7 +36,6 @@ services:
 
   grafana:
     image: grafana/grafana-enterprise
-    container_name: grafana
     volumes:
       - ./grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
       - ./grafana/dashboard_provider.yaml:/etc/grafana/provisioning/dashboards/dashboard_provider.yaml

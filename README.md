@@ -22,8 +22,8 @@ pipenv run python demo.py
 The docker-compose will launch:
  - a container with roki that can be reached on localhost:3000
  - a container with simple http server that provides realtime gtfs-rt feeds to roki
- - a prometheus server that scrapes metrics from roki. Its user interface is served on locahost:9090
- - a grafana server with some dashboards that display the prometheus metrics. Go to locahost:3010. The initial login/password is admin/admin. It takes a minute or so to setup on first launch.
+ - a prometheus server that scrapes metrics from roki. Its user interface is served on localhost:9090
+ - a grafana server with some dashboards that display the prometheus metrics. Go to localhost:3010. The initial login/password is admin/admin. It takes a minute or so to setup on first launch.
 
 Roki expect protobuf requests sent via http, and respond with a protobuf payload.
 The protobuf schema for requests and responses are given in the roki.proto file in
