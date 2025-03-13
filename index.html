@@ -120,11 +120,11 @@
     </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-  <link rel="modulepreload" href="https://pbench.github.io/roki-demo/playground-1dfc883bccc494fa.js" crossorigin="anonymous" integrity="sha384-Rp+hi8UOh8Rg+LGkdWSLSAKIJQluGvj/1XReFRgZyXqgFetV7DAuKPeDDu9xQY3A"><link rel="preload" href="https://pbench.github.io/roki-demo/playground-1dfc883bccc494fa_bg.wasm" crossorigin="anonymous" integrity="sha384-CjmEVofAOYbdJCnBRoh722sjyL+tKHlitJZH6YkP0f4iEdOXV9jVBrykJGt0tTlU" as="fetch" type="application/wasm"></head>
+  <link rel="modulepreload" href="https://pbench.github.io/roki-demo/playground.js" crossorigin="anonymous" integrity="sha384-BZh7aE9JdDUusfwRIcsIDC2aDuwa8k1sIU/5wJJRMnvNeY/CKoFDcRB+FFmU9bAx"><link rel="preload" href="https://pbench.github.io/roki-demo/playground_bg.wasm" crossorigin="anonymous" integrity="sha384-iEYAqRCflZW/I+28fJBAwoTepL8VrYwF3dU/JqnqC1bQgWvv3zDE/p7HmTyeFjPx" as="fetch" type="application/wasm"></head>
   <body>
 <script type="module">
-import init, * as bindings from 'https://pbench.github.io/roki-demo/playground-1dfc883bccc494fa.js';
-const wasm = await init({ module_or_path: 'https://pbench.github.io/roki-demo/playground-1dfc883bccc494fa_bg.wasm' });
+import init, * as bindings from 'https://pbench.github.io/roki-demo/playground.js';
+const wasm = await init({ module_or_path: 'https://pbench.github.io/roki-demo/playground_bg.wasm' });
 
 
 window.wasmBindings = bindings;
