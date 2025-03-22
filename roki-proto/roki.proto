@@ -10,12 +10,16 @@ message RangeRequest {
   // journeys selection criteria to use
   optional RangeCriteria criteria = 2;
 
+  // keep direct journeys in the response
+  // even if they would be dominated based on the criteria
+  optional bool keep_direct_journeys = 3;
+
   // The length of the time range in which we want to search for journeys.
   // - if constraints.datetime_represents = Departure we will search for journeys
   //  that departs in [constraints.datetime, constraints.datetime + range_duration]
   // - if constraints.datetime_represents = Arrival we will search for journeys
   //  that arrives in [constraints.datetime - range_duration, constraints.datetime]
-  optional Duration range_duration = 3;
+  optional Duration range_duration = 4;
   
 }
 

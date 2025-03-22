@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto2',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\nroki.proto\x12\x04roki\"\x8c\x01\n\x0cRangeRequest\x12-\n\x0b\x63onstraints\x18\x01 \x02(\x0b\x32\x18.roki.JourneyConstraints\x12%\n\x08\x63riteria\x18\x02 \x01(\x0e\x32\x13.roki.RangeCriteria\x12&\n\x0erange_duration\x18\x03 \x01(\x0b\x32\x0e.roki.Duration\"j\n\x0fJourneysRequest\x12-\n\x0b\x63onstraints\x18\x01 \x02(\x0b\x32\x18.roki.JourneyConstraints\x12(\n\x08\x63riteria\x18\x02 \x01(\x0e\x32\x16.roki.JourneysCriteria\"\x95\x04\n\x12JourneyConstraints\x12#\n\ndepartures\x18\x01 \x02(\x0b\x32\x0f.roki.Fallbacks\x12!\n\x08\x61rrivals\x18\x02 \x02(\x0b\x32\x0f.roki.Fallbacks\x12!\n\x08\x64\x61tetime\x18\x03 \x02(\x0b\x32\x0f.roki.Timestamp\x12\x35\n\x13\x64\x61tetime_represents\x18\x04 \x01(\x0e\x32\x18.roki.DatetimeRepresents\x12+\n\x0erealtime_level\x18\x05 \x01(\x0e\x32\x13.roki.RealtimeLevel\x12\x16\n\x0emax_nb_of_legs\x18\x06 \x01(\r\x12,\n\x14max_journey_duration\x18\x07 \x01(\x0b\x32\x0e.roki.Duration\x12<\n$max_duration_from_requested_datetime\x18\x08 \x01(\x0b\x32\x0e.roki.Duration\x12\x32\n\x1atransfer_min_wait_duration\x18\t \x01(\x0b\x32\x0e.roki.Duration\x12)\n\x11max_wait_duration\x18\n \x01(\x0b\x32\x0e.roki.Duration\x12-\n\x0fovernight_fence\x18\x0b \x01(\x0b\x32\x14.roki.OvernightFence\x12\x1e\n\x07\x66ilters\x18\x0c \x01(\x0b\x32\r.roki.Filters\"\xac\x01\n\tFallbacks\x12\'\n\x08stations\x18\x01 \x03(\x0b\x32\x15.roki.StationFallback\x12!\n\x05stops\x18\x02 \x03(\x0b\x32\x12.roki.StopFallback\x12*\n\x0fstations_within\x18\x03 \x03(\x0b\x32\x11.roki.BoxFallback\x12\'\n\x0cstops_within\x18\x04 \x03(\x0b\x32\x11.roki.BoxFallback\"G\n\x0fStationFallback\x12\x12\n\nstation_id\x18\x01 \x02(\t\x12 \n\x08\x64uration\x18\x02 \x01(\x0b\x32\x0e.roki.Duration\"A\n\x0cStopFallback\x12\x0f\n\x07stop_id\x18\x01 \x02(\t\x12 \n\x08\x64uration\x18\x02 \x01(\x0b\x32\x0e.roki.Duration\"L\n\x0b\x42oxFallback\x12\x1b\n\x06\x63\x65nter\x18\x01 \x02(\x0b\x32\x0b.roki.Coord\x12 \n\x08\x64istance\x18\x02 \x02(\x0b\x32\x0e.roki.Distance\"\x1a\n\x08\x44istance\x12\x0e\n\x06meters\x18\x01 \x02(\r\"G\n\x0eOvernightFence\x12\x0e\n\x06\x65nable\x18\x01 \x02(\x08\x12\x13\n\x0btime_in_day\x18\x02 \x01(\t\x12\x10\n\x08timezone\x18\x03 \x01(\t\"\xd7\x02\n\x07\x46ilters\x12\x14\n\x0c\x61llowed_stop\x18\x01 \x03(\t\x12\x17\n\x0f\x61llowed_station\x18\x02 \x03(\t\x12\x16\n\x0e\x66orbidden_stop\x18\x03 \x03(\t\x12\x19\n\x11\x66orbidden_station\x18\x04 \x03(\t\x12\x14\n\x0c\x61llowed_trip\x18\x05 \x03(\t\x12\x15\n\rallowed_route\x18\x06 \x03(\t\x12\x16\n\x0e\x61llowed_agency\x18\x07 \x03(\t\x12\x1a\n\x12\x61llowed_route_type\x18\x08 \x03(\t\x12\x16\n\x0e\x66orbidden_trip\x18\t \x03(\t\x12\x17\n\x0f\x66orbidden_route\x18\n \x03(\t\x12\x18\n\x10\x66orbidden_agency\x18\x0b \x03(\t\x12\x1c\n\x14\x66orbidden_route_type\x18\x0c \x03(\t\x12\x12\n\nwheelchair\x18\r \x01(\x08\x12\x0c\n\x04\x62ike\x18\x0e \x01(\x08\"\x93\x02\n\x08Response\x12\x1f\n\x08journeys\x18\x01 \x03(\x0b\x32\r.roki.Journey\x12\x19\n\x05trips\x18\x02 \x03(\x0b\x32\n.roki.Trip\x12\x1b\n\x06routes\x18\x03 \x03(\x0b\x32\x0b.roki.Route\x12\x19\n\x05stops\x18\x04 \x03(\x0b\x32\n.roki.Stop\x12\x1f\n\x08stations\x18\x05 \x03(\x0b\x32\r.roki.Station\x12\x1e\n\x08\x61gencies\x18\x06 \x03(\x0b\x32\x0c.roki.Agency\x12&\n\x0ctrip_updates\x18\x07 \x03(\x0b\x32\x10.roki.TripUpdate\x12*\n\x0eservice_alerts\x18\x08 \x03(\x0b\x32\x12.roki.ServiceAlert\"\xa3\x01\n\x04Trip\x12\n\n\x02id\x18\x01 \x02(\t\x12\x11\n\troute_idx\x18\x02 \x01(\r\x12\x10\n\x08headsign\x18\x03 \x01(\t\x12\x12\n\nshort_name\x18\x04 \x01(\t\x12\"\n\tdirection\x18\x05 \x01(\x0e\x32\x0f.roki.Direction\x12\x1b\n\x13wheelchair_boarding\x18\x06 \x01(\x08\x12\x15\n\rbikes_allowed\x18\x07 \x01(\x08\"\xd2\x01\n\x05Route\x12\n\n\x02id\x18\x01 \x02(\t\x12\x12\n\nagency_idx\x18\x02 \x02(\r\x12\x12\n\nshort_name\x18\x03 \x01(\t\x12\x11\n\tlong_name\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12#\n\nroute_type\x18\x06 \x02(\x0e\x32\x0f.roki.RouteType\x12\x0b\n\x03url\x18\x07 \x01(\t\x12\x1a\n\x05\x63olor\x18\x08 \x01(\x0b\x32\x0b.roki.Color\x12\x1f\n\ntext_color\x18\t \x01(\x0b\x32\x0b.roki.Color\"\x14\n\x05\x43olor\x12\x0b\n\x03hex\x18\x01 \x02(\t\"O\n\x06\x41gency\x12\n\n\x02id\x18\x01 \x02(\t\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x0b\n\x03url\x18\x03 \x02(\t\x12\x10\n\x08timezone\x18\x04 \x02(\t\x12\x0c\n\x04lang\x18\x05 \x01(\t\"\xc1\x01\n\x04Stop\x12\n\n\x02id\x18\x01 \x02(\t\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x0c\n\x04\x63ode\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12\x1a\n\x05\x63oord\x18\x05 \x02(\x0b\x32\x0b.roki.Coord\x12\x0f\n\x07zone_id\x18\x06 \x01(\t\x12\x0b\n\x03url\x18\x07 \x01(\t\x12\x13\n\x0bstation_idx\x18\x08 \x01(\r\x12\x10\n\x08timezone\x18\t \x01(\t\x12\x1b\n\x13wheelchair_boarding\x18\n \x01(\x08\"\x9e\x01\n\x07Station\x12\n\n\x02id\x18\x01 \x02(\t\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x0c\n\x04\x63ode\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12\x1a\n\x05\x63oord\x18\x05 \x02(\x0b\x32\x0b.roki.Coord\x12\x0b\n\x03url\x18\x07 \x01(\t\x12\x10\n\x08timezone\x18\x08 \x01(\t\x12\x1b\n\x13wheelchair_boarding\x18\t \x01(\x08\"!\n\x05\x43oord\x12\x0b\n\x03lat\x18\x01 \x02(\x01\x12\x0b\n\x03lon\x18\x02 \x02(\x01\"\xeb\x01\n\x07Journey\x12\'\n\x0e\x64\x65parture_time\x18\x01 \x02(\x0b\x32\x0f.roki.Timestamp\x12%\n\x0c\x61rrival_time\x18\x02 \x02(\x0b\x32\x0f.roki.Timestamp\x12*\n\x12\x64\x65parture_fallback\x18\x03 \x02(\x0b\x32\x0e.roki.Duration\x12(\n\x10\x61rrival_fallback\x18\x04 \x02(\x0b\x32\x0e.roki.Duration\x12\x17\n\x04legs\x18\x05 \x03(\x0b\x32\t.roki.Leg\x12!\n\ttransfers\x18\x06 \x03(\x0b\x32\x0e.roki.Transfer\"\x1c\n\tTimestamp\x12\x0f\n\x07seconds\x18\x01 \x02(\x04\"\x1b\n\x08\x44uration\x12\x0f\n\x07seconds\x18\x01 \x02(\r\"\x18\n\x05\x44\x65lay\x12\x0f\n\x07seconds\x18\x01 \x02(\x05\"I\n\x08Transfer\x12\x1f\n\x07walking\x18\x01 \x02(\x0b\x32\x0e.roki.Duration\x12\x1c\n\x04wait\x18\x02 \x02(\x0b\x32\x0e.roki.Duration\"\x14\n\x04\x44\x61te\x12\x0c\n\x04\x64\x61te\x18\x01 \x02(\t\"\x87\x01\n\x03Leg\x12\x10\n\x08trip_idx\x18\x01 \x02(\r\x12\x1d\n\ttrip_date\x18\x02 \x02(\x0b\x32\n.roki.Date\x12\"\n\nstop_times\x18\x03 \x03(\x0b\x32\x0e.roki.StopTime\x12\x13\n\x0btrip_update\x18\x04 \x01(\r\x12\x16\n\x0eservice_alerts\x18\x05 \x03(\r\"\xea\x01\n\x08StopTime\x12#\n\nboard_time\x18\x01 \x02(\x0b\x32\x0f.roki.Timestamp\x12$\n\x0b\x64\x65\x62\x61rk_time\x18\x02 \x02(\x0b\x32\x0f.roki.Timestamp\x12\x10\n\x08stop_idx\x18\x03 \x02(\r\x12\x11\n\tcan_board\x18\x04 \x02(\x08\x12\x12\n\ncan_debark\x18\x05 \x02(\x08\x12\x15\n\rstop_headsign\x18\x06 \x01(\t\x12 \n\x0b\x62oard_delay\x18\x07 \x01(\x0b\x32\x0b.roki.Delay\x12!\n\x0c\x64\x65\x62\x61rk_delay\x18\x08 \x01(\x0b\x32\x0b.roki.Delay\"\xbb\x01\n\nTripUpdate\x12\x11\n\tfeed_name\x18\x01 \x02(\t\x12\'\n\x0e\x66\x65\x65\x64_timestamp\x18\x02 \x02(\x0b\x32\x0f.roki.Timestamp\x12\x16\n\x0etrip_update_id\x18\x03 \x02(\t\x12)\n\x0bupdate_type\x18\x04 \x02(\x0e\x32\x14.roki.TripUpdateType\x12.\n\x15trip_update_timestamp\x18\x05 \x01(\x0b\x32\x0f.roki.Timestamp\"\xd4\x02\n\x0cServiceAlert\x12\x11\n\tfeed_name\x18\x01 \x02(\t\x12\'\n\x0e\x66\x65\x65\x64_timestamp\x18\x02 \x02(\x0b\x32\x0f.roki.Timestamp\x12\x18\n\x10service_alert_id\x18\x03 \x02(\t\x12$\n\x0e\x61\x63tive_periods\x18\x05 \x03(\x0b\x32\x0c.roki.Period\x12\x1a\n\x05\x63\x61use\x18\x06 \x02(\x0e\x32\x0b.roki.Cause\x12\x1c\n\x06\x65\x66\x66\x65\x63t\x18\x07 \x02(\x0e\x32\x0c.roki.Effect\x12 \n\x08severity\x18\x08 \x02(\x0e\x32\x0e.roki.Severity\x12\x1f\n\x03url\x18\n \x01(\x0b\x32\x12.roki.Translations\x12\"\n\x06header\x18\x0b \x01(\x0b\x32\x12.roki.Translations\x12\'\n\x0b\x64\x65scription\x18\x0c \x01(\x0b\x32\x12.roki.Translations\"F\n\x06Period\x12\x1e\n\x05start\x18\x01 \x01(\x0b\x32\x0f.roki.Timestamp\x12\x1c\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x0f.roki.Timestamp\"M\n\x0cTranslations\x12\x14\n\x0ctext_no_lang\x18\x01 \x01(\t\x12\'\n\x0ctranslations\x18\x02 \x03(\x0b\x32\x11.roki.Translation\")\n\x0bTranslation\x12\x0c\n\x04lang\x18\x01 \x02(\t\x12\x0c\n\x04text\x18\x02 \x02(\t*0\n\x12\x44\x61tetimeRepresents\x12\r\n\tDeparture\x10\x01\x12\x0b\n\x07\x41rrival\x10\x02*\'\n\rRealtimeLevel\x12\x08\n\x04\x42\x61se\x10\x01\x12\x0c\n\x08Realtime\x10\x02*4\n\rRangeCriteria\x12\r\n\tRangeTime\x10\x01\x12\x14\n\x10RangeTimeAndLegs\x10\x02*Y\n\x10JourneysCriteria\x12\x10\n\x0cJourneysTime\x10\x01\x12\x17\n\x13JourneysTimeAndLegs\x10\x02\x12\x1a\n\x16JourneysTimeAndWalking\x10\x03*&\n\tDirection\x12\x0c\n\x08Outbound\x10\x00\x12\x0b\n\x07Inbound\x10\x01*\x8b\x01\n\tRouteType\x12\x08\n\x04Tram\x10\x00\x12\n\n\x06Subway\x10\x01\x12\x08\n\x04Rail\x10\x02\x12\x07\n\x03\x42us\x10\x03\x12\t\n\x05\x46\x65rry\x10\x04\x12\r\n\tCableTram\x10\x05\x12\x0e\n\nAerialLift\x10\x06\x12\r\n\tFunicular\x10\x07\x12\x0e\n\nTrolleyBus\x10\x0b\x12\x0c\n\x08Monorail\x10\x0c*6\n\x0eTripUpdateType\x12\x0b\n\x07\x44\x45LETED\x10\x01\x12\x0c\n\x08MODIFIED\x10\x02\x12\t\n\x05\x41\x44\x44\x45\x44\x10\x03*\xd8\x01\n\x05\x43\x61use\x12\x11\n\rUNKNOWN_CAUSE\x10\x01\x12\x0f\n\x0bOTHER_CAUSE\x10\x02\x12\x15\n\x11TECHNICAL_PROBLEM\x10\x03\x12\n\n\x06STRIKE\x10\x04\x12\x11\n\rDEMONSTRATION\x10\x05\x12\x0c\n\x08\x41\x43\x43IDENT\x10\x06\x12\x0b\n\x07HOLIDAY\x10\x07\x12\x0b\n\x07WEATHER\x10\x08\x12\x0f\n\x0bMAINTENANCE\x10\t\x12\x10\n\x0c\x43ONSTRUCTION\x10\n\x12\x13\n\x0fPOLICE_ACTIVITY\x10\x0b\x12\x15\n\x11MEDICAL_EMERGENCY\x10\x0c*\xdd\x01\n\x06\x45\x66\x66\x65\x63t\x12\x0e\n\nNO_SERVICE\x10\x01\x12\x13\n\x0fREDUCED_SERVICE\x10\x02\x12\x16\n\x12SIGNIFICANT_DELAYS\x10\x03\x12\n\n\x06\x44\x45TOUR\x10\x04\x12\x16\n\x12\x41\x44\x44ITIONAL_SERVICE\x10\x05\x12\x14\n\x10MODIFIED_SERVICE\x10\x06\x12\x10\n\x0cOTHER_EFFECT\x10\x07\x12\x12\n\x0eUNKNOWN_EFFECT\x10\x08\x12\x0e\n\nSTOP_MOVED\x10\t\x12\r\n\tNO_EFFECT\x10\n\x12\x17\n\x13\x41\x43\x43\x45SSIBILITY_ISSUE\x10\x0b*C\n\x08Severity\x12\x14\n\x10UNKNOWN_SEVERITY\x10\x01\x12\x08\n\x04INFO\x10\x02\x12\x0b\n\x07WARNING\x10\x03\x12\n\n\x06SEVERE\x10\x04'
+  serialized_pb=b'\n\nroki.proto\x12\x04roki\"\xaa\x01\n\x0cRangeRequest\x12-\n\x0b\x63onstraints\x18\x01 \x02(\x0b\x32\x18.roki.JourneyConstraints\x12%\n\x08\x63riteria\x18\x02 \x01(\x0e\x32\x13.roki.RangeCriteria\x12\x1c\n\x14keep_direct_journeys\x18\x03 \x01(\x08\x12&\n\x0erange_duration\x18\x04 \x01(\x0b\x32\x0e.roki.Duration\"j\n\x0fJourneysRequest\x12-\n\x0b\x63onstraints\x18\x01 \x02(\x0b\x32\x18.roki.JourneyConstraints\x12(\n\x08\x63riteria\x18\x02 \x01(\x0e\x32\x16.roki.JourneysCriteria\"\x95\x04\n\x12JourneyConstraints\x12#\n\ndepartures\x18\x01 \x02(\x0b\x32\x0f.roki.Fallbacks\x12!\n\x08\x61rrivals\x18\x02 \x02(\x0b\x32\x0f.roki.Fallbacks\x12!\n\x08\x64\x61tetime\x18\x03 \x02(\x0b\x32\x0f.roki.Timestamp\x12\x35\n\x13\x64\x61tetime_represents\x18\x04 \x01(\x0e\x32\x18.roki.DatetimeRepresents\x12+\n\x0erealtime_level\x18\x05 \x01(\x0e\x32\x13.roki.RealtimeLevel\x12\x16\n\x0emax_nb_of_legs\x18\x06 \x01(\r\x12,\n\x14max_journey_duration\x18\x07 \x01(\x0b\x32\x0e.roki.Duration\x12<\n$max_duration_from_requested_datetime\x18\x08 \x01(\x0b\x32\x0e.roki.Duration\x12\x32\n\x1atransfer_min_wait_duration\x18\t \x01(\x0b\x32\x0e.roki.Duration\x12)\n\x11max_wait_duration\x18\n \x01(\x0b\x32\x0e.roki.Duration\x12-\n\x0fovernight_fence\x18\x0b \x01(\x0b\x32\x14.roki.OvernightFence\x12\x1e\n\x07\x66ilters\x18\x0c \x01(\x0b\x32\r.roki.Filters\"\xac\x01\n\tFallbacks\x12\'\n\x08stations\x18\x01 \x03(\x0b\x32\x15.roki.StationFallback\x12!\n\x05stops\x18\x02 \x03(\x0b\x32\x12.roki.StopFallback\x12*\n\x0fstations_within\x18\x03 \x03(\x0b\x32\x11.roki.BoxFallback\x12\'\n\x0cstops_within\x18\x04 \x03(\x0b\x32\x11.roki.BoxFallback\"G\n\x0fStationFallback\x12\x12\n\nstation_id\x18\x01 \x02(\t\x12 \n\x08\x64uration\x18\x02 \x01(\x0b\x32\x0e.roki.Duration\"A\n\x0cStopFallback\x12\x0f\n\x07stop_id\x18\x01 \x02(\t\x12 \n\x08\x64uration\x18\x02 \x01(\x0b\x32\x0e.roki.Duration\"L\n\x0b\x42oxFallback\x12\x1b\n\x06\x63\x65nter\x18\x01 \x02(\x0b\x32\x0b.roki.Coord\x12 \n\x08\x64istance\x18\x02 \x02(\x0b\x32\x0e.roki.Distance\"\x1a\n\x08\x44istance\x12\x0e\n\x06meters\x18\x01 \x02(\r\"G\n\x0eOvernightFence\x12\x0e\n\x06\x65nable\x18\x01 \x02(\x08\x12\x13\n\x0btime_in_day\x18\x02 \x01(\t\x12\x10\n\x08timezone\x18\x03 \x01(\t\"\xd7\x02\n\x07\x46ilters\x12\x14\n\x0c\x61llowed_stop\x18\x01 \x03(\t\x12\x17\n\x0f\x61llowed_station\x18\x02 \x03(\t\x12\x16\n\x0e\x66orbidden_stop\x18\x03 \x03(\t\x12\x19\n\x11\x66orbidden_station\x18\x04 \x03(\t\x12\x14\n\x0c\x61llowed_trip\x18\x05 \x03(\t\x12\x15\n\rallowed_route\x18\x06 \x03(\t\x12\x16\n\x0e\x61llowed_agency\x18\x07 \x03(\t\x12\x1a\n\x12\x61llowed_route_type\x18\x08 \x03(\t\x12\x16\n\x0e\x66orbidden_trip\x18\t \x03(\t\x12\x17\n\x0f\x66orbidden_route\x18\n \x03(\t\x12\x18\n\x10\x66orbidden_agency\x18\x0b \x03(\t\x12\x1c\n\x14\x66orbidden_route_type\x18\x0c \x03(\t\x12\x12\n\nwheelchair\x18\r \x01(\x08\x12\x0c\n\x04\x62ike\x18\x0e \x01(\x08\"\x93\x02\n\x08Response\x12\x1f\n\x08journeys\x18\x01 \x03(\x0b\x32\r.roki.Journey\x12\x19\n\x05trips\x18\x02 \x03(\x0b\x32\n.roki.Trip\x12\x1b\n\x06routes\x18\x03 \x03(\x0b\x32\x0b.roki.Route\x12\x19\n\x05stops\x18\x04 \x03(\x0b\x32\n.roki.Stop\x12\x1f\n\x08stations\x18\x05 \x03(\x0b\x32\r.roki.Station\x12\x1e\n\x08\x61gencies\x18\x06 \x03(\x0b\x32\x0c.roki.Agency\x12&\n\x0ctrip_updates\x18\x07 \x03(\x0b\x32\x10.roki.TripUpdate\x12*\n\x0eservice_alerts\x18\x08 \x03(\x0b\x32\x12.roki.ServiceAlert\"\xa3\x01\n\x04Trip\x12\n\n\x02id\x18\x01 \x02(\t\x12\x11\n\troute_idx\x18\x02 \x01(\r\x12\x10\n\x08headsign\x18\x03 \x01(\t\x12\x12\n\nshort_name\x18\x04 \x01(\t\x12\"\n\tdirection\x18\x05 \x01(\x0e\x32\x0f.roki.Direction\x12\x1b\n\x13wheelchair_boarding\x18\x06 \x01(\x08\x12\x15\n\rbikes_allowed\x18\x07 \x01(\x08\"\xd2\x01\n\x05Route\x12\n\n\x02id\x18\x01 \x02(\t\x12\x12\n\nagency_idx\x18\x02 \x02(\r\x12\x12\n\nshort_name\x18\x03 \x01(\t\x12\x11\n\tlong_name\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12#\n\nroute_type\x18\x06 \x02(\x0e\x32\x0f.roki.RouteType\x12\x0b\n\x03url\x18\x07 \x01(\t\x12\x1a\n\x05\x63olor\x18\x08 \x01(\x0b\x32\x0b.roki.Color\x12\x1f\n\ntext_color\x18\t \x01(\x0b\x32\x0b.roki.Color\"\x14\n\x05\x43olor\x12\x0b\n\x03hex\x18\x01 \x02(\t\"O\n\x06\x41gency\x12\n\n\x02id\x18\x01 \x02(\t\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x0b\n\x03url\x18\x03 \x02(\t\x12\x10\n\x08timezone\x18\x04 \x02(\t\x12\x0c\n\x04lang\x18\x05 \x01(\t\"\xc1\x01\n\x04Stop\x12\n\n\x02id\x18\x01 \x02(\t\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x0c\n\x04\x63ode\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12\x1a\n\x05\x63oord\x18\x05 \x02(\x0b\x32\x0b.roki.Coord\x12\x0f\n\x07zone_id\x18\x06 \x01(\t\x12\x0b\n\x03url\x18\x07 \x01(\t\x12\x13\n\x0bstation_idx\x18\x08 \x01(\r\x12\x10\n\x08timezone\x18\t \x01(\t\x12\x1b\n\x13wheelchair_boarding\x18\n \x01(\x08\"\x9e\x01\n\x07Station\x12\n\n\x02id\x18\x01 \x02(\t\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x0c\n\x04\x63ode\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12\x1a\n\x05\x63oord\x18\x05 \x02(\x0b\x32\x0b.roki.Coord\x12\x0b\n\x03url\x18\x07 \x01(\t\x12\x10\n\x08timezone\x18\x08 \x01(\t\x12\x1b\n\x13wheelchair_boarding\x18\t \x01(\x08\"!\n\x05\x43oord\x12\x0b\n\x03lat\x18\x01 \x02(\x01\x12\x0b\n\x03lon\x18\x02 \x02(\x01\"\xeb\x01\n\x07Journey\x12\'\n\x0e\x64\x65parture_time\x18\x01 \x02(\x0b\x32\x0f.roki.Timestamp\x12%\n\x0c\x61rrival_time\x18\x02 \x02(\x0b\x32\x0f.roki.Timestamp\x12*\n\x12\x64\x65parture_fallback\x18\x03 \x02(\x0b\x32\x0e.roki.Duration\x12(\n\x10\x61rrival_fallback\x18\x04 \x02(\x0b\x32\x0e.roki.Duration\x12\x17\n\x04legs\x18\x05 \x03(\x0b\x32\t.roki.Leg\x12!\n\ttransfers\x18\x06 \x03(\x0b\x32\x0e.roki.Transfer\"\x1c\n\tTimestamp\x12\x0f\n\x07seconds\x18\x01 \x02(\x04\"\x1b\n\x08\x44uration\x12\x0f\n\x07seconds\x18\x01 \x02(\r\"\x18\n\x05\x44\x65lay\x12\x0f\n\x07seconds\x18\x01 \x02(\x05\"I\n\x08Transfer\x12\x1f\n\x07walking\x18\x01 \x02(\x0b\x32\x0e.roki.Duration\x12\x1c\n\x04wait\x18\x02 \x02(\x0b\x32\x0e.roki.Duration\"\x14\n\x04\x44\x61te\x12\x0c\n\x04\x64\x61te\x18\x01 \x02(\t\"\x87\x01\n\x03Leg\x12\x10\n\x08trip_idx\x18\x01 \x02(\r\x12\x1d\n\ttrip_date\x18\x02 \x02(\x0b\x32\n.roki.Date\x12\"\n\nstop_times\x18\x03 \x03(\x0b\x32\x0e.roki.StopTime\x12\x13\n\x0btrip_update\x18\x04 \x01(\r\x12\x16\n\x0eservice_alerts\x18\x05 \x03(\r\"\xea\x01\n\x08StopTime\x12#\n\nboard_time\x18\x01 \x02(\x0b\x32\x0f.roki.Timestamp\x12$\n\x0b\x64\x65\x62\x61rk_time\x18\x02 \x02(\x0b\x32\x0f.roki.Timestamp\x12\x10\n\x08stop_idx\x18\x03 \x02(\r\x12\x11\n\tcan_board\x18\x04 \x02(\x08\x12\x12\n\ncan_debark\x18\x05 \x02(\x08\x12\x15\n\rstop_headsign\x18\x06 \x01(\t\x12 \n\x0b\x62oard_delay\x18\x07 \x01(\x0b\x32\x0b.roki.Delay\x12!\n\x0c\x64\x65\x62\x61rk_delay\x18\x08 \x01(\x0b\x32\x0b.roki.Delay\"\xbb\x01\n\nTripUpdate\x12\x11\n\tfeed_name\x18\x01 \x02(\t\x12\'\n\x0e\x66\x65\x65\x64_timestamp\x18\x02 \x02(\x0b\x32\x0f.roki.Timestamp\x12\x16\n\x0etrip_update_id\x18\x03 \x02(\t\x12)\n\x0bupdate_type\x18\x04 \x02(\x0e\x32\x14.roki.TripUpdateType\x12.\n\x15trip_update_timestamp\x18\x05 \x01(\x0b\x32\x0f.roki.Timestamp\"\xd4\x02\n\x0cServiceAlert\x12\x11\n\tfeed_name\x18\x01 \x02(\t\x12\'\n\x0e\x66\x65\x65\x64_timestamp\x18\x02 \x02(\x0b\x32\x0f.roki.Timestamp\x12\x18\n\x10service_alert_id\x18\x03 \x02(\t\x12$\n\x0e\x61\x63tive_periods\x18\x05 \x03(\x0b\x32\x0c.roki.Period\x12\x1a\n\x05\x63\x61use\x18\x06 \x02(\x0e\x32\x0b.roki.Cause\x12\x1c\n\x06\x65\x66\x66\x65\x63t\x18\x07 \x02(\x0e\x32\x0c.roki.Effect\x12 \n\x08severity\x18\x08 \x02(\x0e\x32\x0e.roki.Severity\x12\x1f\n\x03url\x18\n \x01(\x0b\x32\x12.roki.Translations\x12\"\n\x06header\x18\x0b \x01(\x0b\x32\x12.roki.Translations\x12\'\n\x0b\x64\x65scription\x18\x0c \x01(\x0b\x32\x12.roki.Translations\"F\n\x06Period\x12\x1e\n\x05start\x18\x01 \x01(\x0b\x32\x0f.roki.Timestamp\x12\x1c\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x0f.roki.Timestamp\"M\n\x0cTranslations\x12\x14\n\x0ctext_no_lang\x18\x01 \x01(\t\x12\'\n\x0ctranslations\x18\x02 \x03(\x0b\x32\x11.roki.Translation\")\n\x0bTranslation\x12\x0c\n\x04lang\x18\x01 \x02(\t\x12\x0c\n\x04text\x18\x02 \x02(\t*0\n\x12\x44\x61tetimeRepresents\x12\r\n\tDeparture\x10\x01\x12\x0b\n\x07\x41rrival\x10\x02*\'\n\rRealtimeLevel\x12\x08\n\x04\x42\x61se\x10\x01\x12\x0c\n\x08Realtime\x10\x02*4\n\rRangeCriteria\x12\r\n\tRangeTime\x10\x01\x12\x14\n\x10RangeTimeAndLegs\x10\x02*Y\n\x10JourneysCriteria\x12\x10\n\x0cJourneysTime\x10\x01\x12\x17\n\x13JourneysTimeAndLegs\x10\x02\x12\x1a\n\x16JourneysTimeAndWalking\x10\x03*&\n\tDirection\x12\x0c\n\x08Outbound\x10\x00\x12\x0b\n\x07Inbound\x10\x01*\x8b\x01\n\tRouteType\x12\x08\n\x04Tram\x10\x00\x12\n\n\x06Subway\x10\x01\x12\x08\n\x04Rail\x10\x02\x12\x07\n\x03\x42us\x10\x03\x12\t\n\x05\x46\x65rry\x10\x04\x12\r\n\tCableTram\x10\x05\x12\x0e\n\nAerialLift\x10\x06\x12\r\n\tFunicular\x10\x07\x12\x0e\n\nTrolleyBus\x10\x0b\x12\x0c\n\x08Monorail\x10\x0c*6\n\x0eTripUpdateType\x12\x0b\n\x07\x44\x45LETED\x10\x01\x12\x0c\n\x08MODIFIED\x10\x02\x12\t\n\x05\x41\x44\x44\x45\x44\x10\x03*\xd8\x01\n\x05\x43\x61use\x12\x11\n\rUNKNOWN_CAUSE\x10\x01\x12\x0f\n\x0bOTHER_CAUSE\x10\x02\x12\x15\n\x11TECHNICAL_PROBLEM\x10\x03\x12\n\n\x06STRIKE\x10\x04\x12\x11\n\rDEMONSTRATION\x10\x05\x12\x0c\n\x08\x41\x43\x43IDENT\x10\x06\x12\x0b\n\x07HOLIDAY\x10\x07\x12\x0b\n\x07WEATHER\x10\x08\x12\x0f\n\x0bMAINTENANCE\x10\t\x12\x10\n\x0c\x43ONSTRUCTION\x10\n\x12\x13\n\x0fPOLICE_ACTIVITY\x10\x0b\x12\x15\n\x11MEDICAL_EMERGENCY\x10\x0c*\xdd\x01\n\x06\x45\x66\x66\x65\x63t\x12\x0e\n\nNO_SERVICE\x10\x01\x12\x13\n\x0fREDUCED_SERVICE\x10\x02\x12\x16\n\x12SIGNIFICANT_DELAYS\x10\x03\x12\n\n\x06\x44\x45TOUR\x10\x04\x12\x16\n\x12\x41\x44\x44ITIONAL_SERVICE\x10\x05\x12\x14\n\x10MODIFIED_SERVICE\x10\x06\x12\x10\n\x0cOTHER_EFFECT\x10\x07\x12\x12\n\x0eUNKNOWN_EFFECT\x10\x08\x12\x0e\n\nSTOP_MOVED\x10\t\x12\r\n\tNO_EFFECT\x10\n\x12\x17\n\x13\x41\x43\x43\x45SSIBILITY_ISSUE\x10\x0b*C\n\x08Severity\x12\x14\n\x10UNKNOWN_SEVERITY\x10\x01\x12\x08\n\x04INFO\x10\x02\x12\x0b\n\x07WARNING\x10\x03\x12\n\n\x06SEVERE\x10\x04'
 )
 
 _DATETIMEREPRESENTS = _descriptor.EnumDescriptor(
@@ -43,8 +43,8 @@ _DATETIMEREPRESENTS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4321,
-  serialized_end=4369,
+  serialized_start=4351,
+  serialized_end=4399,
 )
 _sym_db.RegisterEnumDescriptor(_DATETIMEREPRESENTS)
 
@@ -69,8 +69,8 @@ _REALTIMELEVEL = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4371,
-  serialized_end=4410,
+  serialized_start=4401,
+  serialized_end=4440,
 )
 _sym_db.RegisterEnumDescriptor(_REALTIMELEVEL)
 
@@ -95,8 +95,8 @@ _RANGECRITERIA = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4412,
-  serialized_end=4464,
+  serialized_start=4442,
+  serialized_end=4494,
 )
 _sym_db.RegisterEnumDescriptor(_RANGECRITERIA)
 
@@ -126,8 +126,8 @@ _JOURNEYSCRITERIA = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4466,
-  serialized_end=4555,
+  serialized_start=4496,
+  serialized_end=4585,
 )
 _sym_db.RegisterEnumDescriptor(_JOURNEYSCRITERIA)
 
@@ -152,8 +152,8 @@ _DIRECTION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4557,
-  serialized_end=4595,
+  serialized_start=4587,
+  serialized_end=4625,
 )
 _sym_db.RegisterEnumDescriptor(_DIRECTION)
 
@@ -218,8 +218,8 @@ _ROUTETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4598,
-  serialized_end=4737,
+  serialized_start=4628,
+  serialized_end=4767,
 )
 _sym_db.RegisterEnumDescriptor(_ROUTETYPE)
 
@@ -249,8 +249,8 @@ _TRIPUPDATETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4739,
-  serialized_end=4793,
+  serialized_start=4769,
+  serialized_end=4823,
 )
 _sym_db.RegisterEnumDescriptor(_TRIPUPDATETYPE)
 
@@ -325,8 +325,8 @@ _CAUSE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4796,
-  serialized_end=5012,
+  serialized_start=4826,
+  serialized_end=5042,
 )
 _sym_db.RegisterEnumDescriptor(_CAUSE)
 
@@ -396,8 +396,8 @@ _EFFECT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=5015,
-  serialized_end=5236,
+  serialized_start=5045,
+  serialized_end=5266,
 )
 _sym_db.RegisterEnumDescriptor(_EFFECT)
 
@@ -432,8 +432,8 @@ _SEVERITY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=5238,
-  serialized_end=5305,
+  serialized_start=5268,
+  serialized_end=5335,
 )
 _sym_db.RegisterEnumDescriptor(_SEVERITY)
 
@@ -515,8 +515,15 @@ _RANGEREQUEST = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='range_duration', full_name='roki.RangeRequest.range_duration', index=2,
-      number=3, type=11, cpp_type=10, label=1,
+      name='keep_direct_journeys', full_name='roki.RangeRequest.keep_direct_journeys', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='range_duration', full_name='roki.RangeRequest.range_duration', index=3,
+      number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -534,7 +541,7 @@ _RANGEREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=21,
-  serialized_end=161,
+  serialized_end=191,
 )
 
 
@@ -572,8 +579,8 @@ _JOURNEYSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=163,
-  serialized_end=269,
+  serialized_start=193,
+  serialized_end=299,
 )
 
 
@@ -681,8 +688,8 @@ _JOURNEYCONSTRAINTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=272,
-  serialized_end=805,
+  serialized_start=302,
+  serialized_end=835,
 )
 
 
@@ -734,8 +741,8 @@ _FALLBACKS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=808,
-  serialized_end=980,
+  serialized_start=838,
+  serialized_end=1010,
 )
 
 
@@ -773,8 +780,8 @@ _STATIONFALLBACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=982,
-  serialized_end=1053,
+  serialized_start=1012,
+  serialized_end=1083,
 )
 
 
@@ -812,8 +819,8 @@ _STOPFALLBACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1055,
-  serialized_end=1120,
+  serialized_start=1085,
+  serialized_end=1150,
 )
 
 
@@ -851,8 +858,8 @@ _BOXFALLBACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1122,
-  serialized_end=1198,
+  serialized_start=1152,
+  serialized_end=1228,
 )
 
 
@@ -883,8 +890,8 @@ _DISTANCE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1200,
-  serialized_end=1226,
+  serialized_start=1230,
+  serialized_end=1256,
 )
 
 
@@ -929,8 +936,8 @@ _OVERNIGHTFENCE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1228,
-  serialized_end=1299,
+  serialized_start=1258,
+  serialized_end=1329,
 )
 
 
@@ -1052,8 +1059,8 @@ _FILTERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1302,
-  serialized_end=1645,
+  serialized_start=1332,
+  serialized_end=1675,
 )
 
 
@@ -1133,8 +1140,8 @@ _RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1648,
-  serialized_end=1923,
+  serialized_start=1678,
+  serialized_end=1953,
 )
 
 
@@ -1207,8 +1214,8 @@ _TRIP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1926,
-  serialized_end=2089,
+  serialized_start=1956,
+  serialized_end=2119,
 )
 
 
@@ -1295,8 +1302,8 @@ _ROUTE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2092,
-  serialized_end=2302,
+  serialized_start=2122,
+  serialized_end=2332,
 )
 
 
@@ -1327,8 +1334,8 @@ _COLOR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2304,
-  serialized_end=2324,
+  serialized_start=2334,
+  serialized_end=2354,
 )
 
 
@@ -1387,8 +1394,8 @@ _AGENCY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2326,
-  serialized_end=2405,
+  serialized_start=2356,
+  serialized_end=2435,
 )
 
 
@@ -1482,8 +1489,8 @@ _STOP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2408,
-  serialized_end=2601,
+  serialized_start=2438,
+  serialized_end=2631,
 )
 
 
@@ -1563,8 +1570,8 @@ _STATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2604,
-  serialized_end=2762,
+  serialized_start=2634,
+  serialized_end=2792,
 )
 
 
@@ -1602,8 +1609,8 @@ _COORD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2764,
-  serialized_end=2797,
+  serialized_start=2794,
+  serialized_end=2827,
 )
 
 
@@ -1669,8 +1676,8 @@ _JOURNEY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2800,
-  serialized_end=3035,
+  serialized_start=2830,
+  serialized_end=3065,
 )
 
 
@@ -1701,8 +1708,8 @@ _TIMESTAMP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3037,
-  serialized_end=3065,
+  serialized_start=3067,
+  serialized_end=3095,
 )
 
 
@@ -1733,8 +1740,8 @@ _DURATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3067,
-  serialized_end=3094,
+  serialized_start=3097,
+  serialized_end=3124,
 )
 
 
@@ -1765,8 +1772,8 @@ _DELAY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3096,
-  serialized_end=3120,
+  serialized_start=3126,
+  serialized_end=3150,
 )
 
 
@@ -1804,8 +1811,8 @@ _TRANSFER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3122,
-  serialized_end=3195,
+  serialized_start=3152,
+  serialized_end=3225,
 )
 
 
@@ -1836,8 +1843,8 @@ _DATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3197,
-  serialized_end=3217,
+  serialized_start=3227,
+  serialized_end=3247,
 )
 
 
@@ -1896,8 +1903,8 @@ _LEG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3220,
-  serialized_end=3355,
+  serialized_start=3250,
+  serialized_end=3385,
 )
 
 
@@ -1977,8 +1984,8 @@ _STOPTIME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3358,
-  serialized_end=3592,
+  serialized_start=3388,
+  serialized_end=3622,
 )
 
 
@@ -2037,8 +2044,8 @@ _TRIPUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3595,
-  serialized_end=3782,
+  serialized_start=3625,
+  serialized_end=3812,
 )
 
 
@@ -2132,8 +2139,8 @@ _SERVICEALERT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3785,
-  serialized_end=4125,
+  serialized_start=3815,
+  serialized_end=4155,
 )
 
 
@@ -2171,8 +2178,8 @@ _PERIOD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4127,
-  serialized_end=4197,
+  serialized_start=4157,
+  serialized_end=4227,
 )
 
 
@@ -2210,8 +2217,8 @@ _TRANSLATIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4199,
-  serialized_end=4276,
+  serialized_start=4229,
+  serialized_end=4306,
 )
 
 
@@ -2249,8 +2256,8 @@ _TRANSLATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4278,
-  serialized_end=4319,
+  serialized_start=4308,
+  serialized_end=4349,
 )
 
 _RANGEREQUEST.fields_by_name['constraints'].message_type = _JOURNEYCONSTRAINTS
