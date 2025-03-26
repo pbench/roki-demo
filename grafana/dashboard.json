@@ -671,7 +671,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "reqps"
         },
         "overrides": []
       },
@@ -700,7 +701,7 @@
         {
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "rate(apply_realtime_durations_count[$__rate_interval])*$__rate_interval",
+          "expr": "rate(apply_realtime_durations_count[$__rate_interval])",
           "fullMetaSearch": false,
           "includeNullMetadata": false,
           "legendFormat": "__auto",
@@ -880,34 +881,10 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "reqps"
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "service_alert scnf-sa ok"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
@@ -934,7 +911,7 @@
         {
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "rate(feed_retreival_durations_count[$__rate_interval]) * $__rate_interval",
+          "expr": "rate(feed_retreival_durations_count[$__rate_interval])",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "{{feed_type}} {{feed_name}} {{success}}",
