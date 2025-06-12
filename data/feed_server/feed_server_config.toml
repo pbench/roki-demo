@@ -1,0 +1,7 @@
+http_address = "0.0.0.0:8000"
+
+[feeds]
+sncf-tgv-gtfs-rt-trip-updates = "/data/sncf-tgv-gtfs-rt-trip-updates"
+sncf-ter-gtfs-rt-trip-updates = "/data/sncf-ter-gtfs-rt-trip-updates"
+sncf-ic-gtfs-rt-trip-updates = "/data/sncf-ic-gtfs-rt-trip-updates"
+sncf-gtfs-rt-service-alerts = "/data/sncf-gtfs-rt-service-alerts"

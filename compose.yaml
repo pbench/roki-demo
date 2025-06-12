@@ -1,9 +1,10 @@
-version: "3"
+
 services:
   roki:
     image: pbench/roki:latest
+    read_only: true
     volumes:
-      - ./data/:/data
+      - ./data/roki/:/data
     ports:
       - 3000:3000
       - 3001:3001
@@ -17,22 +18,19 @@ services:
       gtfs_rt_feed_server:
         condition: service_healthy
 
-  # a simple server that will be used by roki to download the protobuf files in ./data/gtfs_rt/
-  # see https://pythonbasics.org/webserver/
+  # a simple server that will be used by roki to download the 
+  # gtfs_rt protobuf files in ./data/feed_server/
   gtfs_rt_feed_server:
-    image: python:3
+    image: pbench/feed_server:latest
+    read_only: true
     volumes: 
-      - ./data/gtfs_rt:/data
-    working_dir: /data
-    entrypoint: python3 -m http.server 8001
+      - ./data/feed_server/:/data
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8001/"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 10s
       timeout: 10s
       retries: 5
       start_period: 30s
-    ports:
-      - 8001:8001
 
   grafana:
     image: grafana/grafana-enterprise

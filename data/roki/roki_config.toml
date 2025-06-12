@@ -70,9 +70,9 @@ apply_interval = "1m"
 # Each feed must have a name and an url.
 # We can also specify how often this feed will be refreshed, and the timeout for the http call to retreive the feed.
 trip_update = [
-    { name = "tgv", url= "http://gtfs_rt_feed_server:8001/sncf-tgv-gtfs-rt-trip-updates", refresh_interval = "2m", http_call_timeout = "10s"},
-    { name = "ter", url= "http://gtfs_rt_feed_server:8001/sncf-ter-gtfs-rt-trip-updates"},
-    { name = "intercites", url="http://gtfs_rt_feed_server:8001/sncf-ic-gtfs-rt-trip-updates"}
+    { name = "tgv", url= "http://gtfs_rt_feed_server:8000/sncf-tgv-gtfs-rt-trip-updates", refresh_interval = "2m", http_call_timeout = "10s"},
+    { name = "ter", url= "http://gtfs_rt_feed_server:8000/sncf-ter-gtfs-rt-trip-updates"},
+    { name = "intercites", url="http://gtfs_rt_feed_server:8000/sncf-ic-gtfs-rt-trip-updates"}
 ]
 # Specify the list of gtfs-rt service alerts feeds to retreive.
 # Each feed must have a name and an url.
@@ -83,5 +83,5 @@ trip_update = [
 # - contains a "F", and 
 # - the part of the trip identifier before the last "F" is equal to "OCESN891208"
 service_alert = [
-    { name = "scnf-sa", url= "http://gtfs_rt_feed_server:8001/sncf-gtfs-rt-service-alerts", prefix_ends=["F", "R"], refresh_interval = "2m", http_call_timeout = "10s"},
+    { name = "scnf-sa", url= "http://gtfs_rt_feed_server:8000/sncf-gtfs-rt-service-alerts", prefix_ends=["F", "R"], refresh_interval = "2m", http_call_timeout = "10s"},
 ]
