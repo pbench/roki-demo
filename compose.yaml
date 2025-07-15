@@ -8,12 +8,6 @@ services:
     ports:
       - 3000:3000
       - 3001:3001
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
     depends_on:
       gtfs_rt_feed_server:
         condition: service_healthy
@@ -25,12 +19,6 @@ services:
     read_only: true
     volumes: 
       - ./data/feed_server/:/data
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
 
   grafana:
     image: grafana/grafana-enterprise
