@@ -5,6 +5,7 @@
 Install pip for python dependencies
 ```bash
 pip install pipenv --user
+pipenv install
 ```
 
 ## Launch 
@@ -63,7 +64,7 @@ sudo apt install -y protobuf-compiler
 
 Generate the python protobuf files
 ```bash
-protoc --proto_path=roki-proto --python_out=. roki-proto/roki.proto
+protoc --proto_path=proto --python_out=. proto/roki.proto 
 ```
 
 

@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 requests = "*"
-protobuf = "~=3.20"
+protobuf = "*"
 
 [dev-packages]
 

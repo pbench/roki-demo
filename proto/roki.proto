@@ -1,0 +1,760 @@
+syntax = "proto3";
+package roki;
+
+
+message Distance {
+  uint32 meters = 1;
+}
+
+message Timestamp {
+  // number of seconds since Jan 1st 1970
+  uint64 seconds = 1;
+}
+
+message Date {
+  int32 year = 1;
+  uint32 month = 2;
+  uint32 day = 3;
+}
+
+message TimeInDay {
+  // in [0, 23]
+  uint32 hours = 1;
+  // in [0, 59]
+  uint32 minutes = 2;
+  // in [0, 59]
+  uint32 seconds = 3;
+}
+
+message Timezone {
+  // A timezone identifier such as Europe/Paris
+  // See the list of valid values at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  string id = 1;
+}
+
+message Duration {
+  uint32 seconds = 1;
+}
+
+message Delay {
+  sint32 seconds = 1;
+}
+
+
+message Speed {
+  double meters_per_second = 1;
+}
+
+message Coord {
+  double lat = 1;
+  double lon = 2;
+}
+
+// a square centered at center
+// with a side of length 2*distance
+message GeoBox {
+  Coord center = 1;
+  Distance distance = 2;
+}
+
+message Color {
+  string hex = 1;
+}
+
+message NbOfLegs {
+  uint32 nb = 1;
+}
+
+
+enum StreetMode {
+  STREET_MODE_UNSPECIFIED = 0;
+  FOOT = 1;
+  CYCLE = 2;
+  CAR = 3;
+}
+
+
+message JourneyConfig {
+
+  // - if datetime_represents = Departure the journey must depart after datetime
+  // - if datetime_represents = Arrival   the journey must arrive before datetime
+  enum DatetimeRepresents {
+    REPRESENTS_UNSPECIFIED = 0;
+    DEPARTURE = 1;
+    ARRIVAL = 2;
+  }
+  DatetimeRepresents datetime_represents = 2;
+
+  // - if realtime_level = Base the journey must follow the static schedule from ntfs
+  // - if realtime_level = Realtime the journey must follow the realtime schedule from gtfs-rt
+  enum RealtimeLevel {
+    REALTIME_LEVEL_UNSPECIFIED = 0;
+    BASE = 1;
+    REALTIME = 2;
+  }
+  RealtimeLevel realtime_level = 5;
+
+  // the maximum number of legs in the journey
+  NbOfLegs max_nb_of_legs = 6;
+
+  // the arrival time of the journey must be less than its departure time + max_journey_duration
+  Duration max_journey_duration = 7;
+
+  // - if datetime_represents = Departure the journey must 
+  //  arrives before datetime + max_duration_from_requested_datetime
+  // - if datetime_represents = Arrival   the journey must 
+  //  departs after datetime - max_duration_from_requested_datetime
+  Duration max_duration_from_requested_datetime = 8;
+
+  // the minimum duration we must wait at a transfer
+  Duration transfer_min_wait_duration = 9;
+
+  // the maximum duration we can wait at a transfer
+  Duration max_wait_duration = 10;
+
+  // forbids waiting overnight at a transfer
+  OvernightFence overnight_fence = 11;
+
+  // restricts the trips and/or stations 
+  // that the journey can use
+  Filters filters = 12;
+}
+
+
+message Fallbacks {
+  // allowed stations by id
+  repeated StationFallback stations = 1;
+
+  // allowed stops by id
+  repeated StopFallback stops = 2;
+
+  // allowed stations by geographical zone
+  repeated GeoBox stations_within = 3;
+
+  // allowed stops by geographical zone
+  repeated GeoBox stops_within = 4;
+
+  // allowed portals by id
+  repeated PortalFallback portals = 5;
+}
+
+message StationFallback {
+  // id of the station, as it appears in gtfs stops.txt
+  optional string station_id = 1;
+
+  // how long does it takes to reach this station
+  Duration duration = 2;
+}
+
+message StopFallback {
+  // id of the stop, as it appears in gtfs stops.txt
+  optional string stop_id = 1;
+
+  // how long does it takes to reach this stop
+  Duration duration = 2;
+}
+
+message PortalFallback {
+  // id of the entrance/exit, as it appears in gtfs stops.txt
+  optional string portal_id = 1;
+
+  // how long does it takes to reach this entrance/exit
+  Duration duration = 2;
+}
+
+
+
+
+
+
+// when active, this will forbid any transfer that result in 
+// waiting across the specified time_in_day, on any day.
+message OvernightFence {
+
+  // is the fence active or not
+  optional bool enable = 1;
+
+  // Must be present if enable = true
+  TimeInDay time_in_day = 2;
+
+
+  // Specify the timezone in which the time_in_day must be interpreted. 
+  // Must be present if enable = true
+  Timezone timezone = 3;
+}
+
+
+message Filters {
+  // if allowed_stop or allowed_stations are not empty
+  // then any board or debark must take place
+  // at one of the allowed_stop/allowed_station
+  repeated string allowed_stop = 1;
+  repeated string allowed_station = 2;
+
+  // Forbid board and debark at any of the forbidden_stop/forbidden_station.
+
+  repeated string forbidden_stop = 3;
+  repeated string forbidden_station = 4;
+
+
+  // if allowed_trip/route/agency/route_type are not empty
+  // then we can only use trips that belongs to the specified
+  // allowed_trip/route/agency/route_type
+  repeated string allowed_trip = 5;
+  repeated string allowed_route = 6;
+  repeated string allowed_agency = 7;
+  repeated string allowed_route_type = 8;
+
+  // Forbid using trips that belongs to the specified
+  // forbidden_trip/route/agency/route_type.
+  // Active only if allowed_trip/route/agency/route_type are empty
+  repeated string forbidden_trip = 9;
+  repeated string forbidden_route = 10;
+  repeated string forbidden_agency = 11;
+  repeated string forbidden_route_type = 12;
+
+  // if true, then we must use trips and stops that 
+  // are marked with wheelchair_boarding = True in the gtfs
+  optional bool wheelchair = 13;
+
+  // if true, then we must use trips 
+  // are marked with bikes_allowed = True in the gtfs
+  optional bool bike = 14;
+}
+
+message PathConfig {
+  StreetMode mode = 1;
+  Speed foot_speed = 2;
+  Speed cycle_speed = 3;
+  Distance max_distance = 5;
+  Duration max_duration = 6;
+  Distance projection_max_distance = 7;
+}
+
+
+
+
+
+message Objects {
+  repeated Trip trips = 1;
+  repeated Route routes = 2;
+  repeated Stop stops = 3;
+  repeated Station stations = 4;
+  repeated Agency agencies = 5;
+  repeated TripUpdate trip_updates = 6;
+  repeated ServiceAlert service_alerts = 7; 
+  repeated Portal portals = 8;
+  repeated Access departures = 9;
+  repeated Access arrivals = 10;
+}
+
+message TripIdx {
+  // idx in Objects.trips
+  uint32 idx = 1;
+}
+
+message RouteIdx {
+  // idx in Objects.routes
+  uint32 idx = 1;
+}
+
+message StopIdx {
+  // idx in Objects.stops
+  uint32 idx = 1;
+}
+
+message StationIdx {
+  // idx in Objects.stations
+  uint32 idx = 1;
+}
+
+message AgencyIdx {
+  // idx in Objects.agencies
+  uint32 idx = 1;
+}
+
+message TripUpdateIdx {
+  // idx in Objects.trip_updates
+  uint32 idx = 1;
+}
+
+message ServiceAlertIdx {
+  // idx in Objects.service_alerts
+  uint32 idx = 1;
+}
+
+message PortalIdx {
+  // idx in Objects.portals
+  uint32 idx = 1;
+}
+
+message DepartureIdx {
+  // idx in Objects.departures
+  uint32 idx = 1;
+}
+
+message ArrivalIdx {
+  // idx in Objects.arrivals
+  uint32 idx = 1;
+}
+
+message Journeys {
+  repeated Journey journeys = 1;
+  Objects objects = 2;
+}
+
+message Journey {
+  Timestamp departure_time = 1;
+  Timestamp arrival_time = 2;
+  DepartureIdx departure = 3;
+  ArrivalIdx arrival = 4;
+
+  repeated Leg legs = 5;
+  repeated Transfer transfers = 6;
+}
+
+message Transfer {
+  Duration walking = 1;
+  Duration wait = 2;
+}
+
+
+message Access {
+  message TeleportToStop {
+    StopIdx stop_idx = 1;
+  };
+  message TeleportToStation {
+    StationIdx station_idx = 1;
+  };
+  message Stop {
+    StopIdx stop_idx = 1;
+    Duration duration = 2;
+    Path path = 3;
+  };
+  message Station {
+    StationIdx station_idx = 1;
+    Duration duration = 2;
+    Path path = 3;
+  };
+  message Portal {
+    PortalIdx portal_idx = 1;
+    Duration duration_to_portal = 2;
+    Duration corridor_duration = 3;
+    Path path = 4;
+  };
+  
+  oneof access {
+    TeleportToStop teleport_to_stop = 1;
+    TeleportToStation teleport_to_station = 2;
+    Stop stop = 3;
+    Station station = 4;
+    Portal portal = 5;
+  }
+  
+}
+
+
+message Leg {
+
+  TripIdx trip_idx = 1;
+  Date trip_date = 2;
+  
+  repeated StopTime stop_times = 3;
+
+  TripUpdateIdx trip_update = 4;
+  repeated ServiceAlertIdx service_alerts = 5;
+}
+
+message StopTime {
+  Timestamp board_time = 1;
+  Timestamp debark_time = 2;
+
+  StopIdx stop_idx = 3;
+  optional bool can_board = 4;
+  optional bool can_debark = 5;
+  optional string stop_headsign = 6;
+
+  // delay from TripUpdate on this trip, if any
+  // only appears when realtime_level = Realtime
+  Delay board_delay = 7;
+
+  // delay from TripUpdate on this trip, if any
+  // only appears when realtime_level = Realtime
+  Delay debark_delay = 8;
+}
+
+
+message Trip {
+  optional string id = 1;
+  
+  // idx in Response.routes
+  RouteIdx route_idx = 2;
+  optional string headsign = 3;
+  optional string short_name = 4;
+
+  enum Direction {
+    DIRECTION_UNSPECIFIED = 0;
+    OUTBOUND = 1;
+    INBOUND = 2;
+  }
+  Direction direction = 5;
+
+  optional bool wheelchair_boarding = 6;
+
+  optional bool bikes_allowed = 7;
+
+}
+
+
+message Route {
+  optional string id = 1;
+
+  AgencyIdx agency_idx = 2;
+  optional string short_name = 3;
+  optional string long_name = 4;
+  optional string description = 5;
+  enum Type {
+    UNSPECIFIED = 0;
+    TRAM = 1;
+    SUBWAY = 2;
+    RAIL = 3;
+    BUS = 4;
+    FERRY = 5;
+    CABLE_TRAM = 6;
+    AERIAL_LIFT = 7;
+    FUNICULAR = 8;
+    TROLLEY_BUS = 9;
+    MONORAIL = 10;
+  }
+  Type route_type = 6;
+  optional string url = 7;
+  Color color = 8;
+  Color text_color = 9;
+}
+
+
+
+message Agency {
+  optional string id = 1;
+  optional string name = 2;
+  optional string url = 3;
+  optional string timezone = 4;
+  optional string lang = 5;
+
+}
+
+
+
+message Stop {
+  optional string id =1;
+  optional string name = 2;
+  optional string code = 3;
+  optional string description = 4;
+  Coord coord = 5;
+  optional string zone_id = 6;
+  optional string url = 7;
+
+  StationIdx station_idx = 8;
+  optional string timezone = 9;
+  optional bool wheelchair_boarding = 10;
+
+}
+
+
+message Portal {
+  optional string id =1;
+  optional string name = 2;
+  optional string code = 3;
+  optional string description = 4;
+  Coord coord = 5;
+  StationIdx station_idx = 8;
+  optional bool wheelchair_boarding = 10;
+
+}
+
+message Station {
+  optional string id =1;
+  optional string name = 2;
+  optional string code = 3;
+  optional string description = 4;
+  Coord coord = 5;
+  optional string url = 7;
+  optional string timezone = 8;
+  optional bool wheelchair_boarding = 9;
+}
+
+
+
+message TripUpdate {
+  optional string id = 1;
+  Timestamp timestamp = 2;
+  enum Type {
+    UNSPECIFIED = 0; 
+    DELETED = 1;
+    MODIFIED = 2;
+    ADDED = 3;
+  }
+  Type update_type = 3;
+
+  optional string feed_name = 4;
+  Timestamp feed_timestamp = 5;
+  
+}
+
+
+
+message ServiceAlert {
+  optional string id = 1;
+  optional string feed_name = 2;
+  Timestamp feed_timestamp = 3;
+  repeated Period active_periods = 4;
+  enum Cause {
+    CAUSE_UNSPECIFIED = 0;
+    UNKNOWN_CAUSE = 1;
+    OTHER_CAUSE = 2;
+    TECHNICAL_PROBLEM = 3;
+    STRIKE = 4;
+    DEMONSTRATION = 5;
+    ACCIDENT = 6;
+    HOLIDAY = 7;
+    WEATHER = 8;
+    MAINTENANCE = 9;
+    CONSTRUCTION = 10;
+    POLICE_ACTIVITY = 11;
+    MEDICAL_EMERGENCY = 12;
+  }
+  Cause cause = 5;
+  enum Effect {
+    EFFECT_UNSPECIFIED = 0;
+    NO_SERVICE = 1;
+    REDUCED_SERVICE = 2;
+    SIGNIFICANT_DELAYS = 3;
+    DETOUR = 4;
+    ADDITIONAL_SERVICE = 5;
+    MODIFIED_SERVICE = 6;
+    OTHER_EFFECT = 7;
+    UNKNOWN_EFFECT = 8;
+    STOP_MOVED = 9;
+    NO_EFFECT = 10;
+    ACCESSIBILITY_ISSUE = 11;
+  }
+  Effect effect = 6;
+  enum Severity {
+    SEVERITY_UNSPECIFIED = 0;
+    UNKNOWN_SEVERITY = 1;
+    INFO = 2;
+    WARNING = 3;
+    SEVERE = 4;
+  }
+  Severity severity = 7;
+  Translations url = 8;
+  Translations header = 9;
+  Translations description = 10;
+}
+
+message Period {
+  Timestamp start = 1;
+  Timestamp end = 2;
+}
+
+
+message Translations {
+  optional string default = 1;
+  repeated Translation translations = 2;
+}
+
+message Translation {
+  optional string lang = 1;
+  optional string text = 2;
+}
+
+
+message PathResult {
+  Path path = 1;
+  // oneof result {
+  //   Path path = 1;
+  //   string error = 2;
+  // }
+}
+
+
+message Path {
+  Duration duration = 1;
+  Distance distance = 2;
+  repeated Coord shape = 3;
+  // instructions ?
+  // elevations ?
+}
+
+
+message AccessPoint {
+  enum AccessPointType {
+    ACCESS_POINT_TYPE_UNSPECIFIED = 0;
+    STOP = 1;
+    PORTAL = 2;
+  }
+  AccessPointType access_point_type = 1;
+  optional string id = 2;
+  Coord coord = 3;
+}
+
+
+message PathRequest {
+  Coord departure = 1;
+  Coord arrival = 2;
+  PathConfig config = 3;
+}
+
+message PathResponse {
+  PathResult result = 1;
+}
+
+
+
+message PathMultiRequest {
+  repeated PathRequest requests = 1;
+}
+
+message PathMultiResponse {
+  repeated PathResult results = 1;
+}
+
+
+message TreeRequest {
+  Coord root = 1;
+  repeated Coord leaves = 2;
+  PathConfig path_config = 3;
+  optional bool include_shape = 4;
+  enum Towards {
+    TOWARDS_UNSPECIFIED = 0;
+    LEAVES = 1;
+    ROOT = 2;
+  }
+  Towards towards = 5;
+}
+
+
+message TreeResponse {
+  // one result for each leaf
+  repeated PathResult results = 1;
+}
+
+message TreeMultiRequest {
+  repeated TreeRequest requests = 1;
+}
+
+message TreeMultiResponse {
+  repeated TreeResponse responses = 1;
+}
+
+
+
+// Search for journeys at a time instant
+message ItineraryRequest {
+
+  // the requested datetime
+  Timestamp datetime = 1;
+
+  Coord departure = 2;
+  Coord arrival = 3;
+
+  JourneyConfig journey_config = 4;
+
+  PathConfig departure_config = 5;
+  PathConfig arrival_config = 6;
+
+  InstantRequest.Criteria criteria = 7;
+
+}
+
+message ItineraryResponse {
+    Journeys journeys = 1;
+}
+
+
+
+// Search for journeys at a time instant
+message InstantRequest {
+
+  // the requested datetime
+  Timestamp datetime = 1;
+
+  Fallbacks departures = 2;
+  Fallbacks arrivals = 3;
+
+  JourneyConfig config = 4;
+
+  enum Criteria { 
+    CRITERIA_UNSPECIFIED = 0;
+    TIME = 1;
+    TIME_AND_LEGS = 2;
+    TIME_AND_WALKING = 3;
+  }
+  Criteria criteria = 5;
+
+}
+
+message InstantResponse {
+    Journeys journeys = 1;
+}
+
+
+// Search for journeys within a time range
+message RangeRequest {
+
+  // the requested datetime
+  Timestamp datetime = 1;
+
+  Fallbacks departures = 2;
+  Fallbacks arrivals = 3;
+
+  JourneyConfig config = 4;
+
+  // journeys selection criteria to use
+  enum Criteria {
+    CRITERIA_UNSPECIFIED = 0;
+    TIME = 1;
+    TIME_AND_LEGS = 2;
+  };
+  Criteria criteria = 5;
+
+  // keep direct journeys in the response
+  // even if they would be dominated based on the criteria
+  optional bool keep_direct_journeys = 6;
+
+  // The length of the time range in which we want to search for journeys.
+  // - if datetime.represents = Departure we will search for journeys
+  //  that departs in [datetime.timestamp, datetime.timestamp + range_duration]
+  // - if datetime.represents = Arrival we will search for journeys
+  //  that arrives in [datetime.timestamp - range_duration, datetime.timestamp]
+  Duration range_duration = 7;
+  
+}
+
+message RangeResponse {
+    Journeys journeys = 1;
+}
+
+
+message AccessPointsRequest {
+  enum AccessDirection { 
+    ACCESS_DIRECTION_UNSPECIFIED = 0;
+    ENTRANCE = 1;
+    EXIT = 2;
+  };
+  AccessDirection access_direction = 1;
+  GeoBox geobox = 2;
+}
+
+message AccessPointsResponse {
+  repeated AccessPoint access_points = 1;
+}
+
+
+message AccessPointsMultiRequest {
+  repeated AccessPointsRequest requests = 1;
+}
+
+message AccessPointsMultiResponse {
+  repeated AccessPointsResponse responses = 1;
+}

@@ -8,9 +8,6 @@ services:
     ports:
       - 3000:3000
       - 3001:3001
-    depends_on:
-      gtfs_rt_feed_server:
-        condition: service_healthy
 
   # a simple server that will be used by roki to download the 
   # gtfs_rt protobuf files in ./data/feed_server/

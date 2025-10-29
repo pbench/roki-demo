@@ -6,15 +6,15 @@ import json
 
 def lannion_paris():
     roki_request = roki_pb2.RangeRequest()
-    departure_station = roki_request.constraints.departures.stations.add()
+    departure_station = roki_request.departures.stations.add()
     departure_station.station_id = "StopArea:OCE87473223" #lannion
 
-    arrival_station = roki_request.constraints.arrivals.stations.add()
+    arrival_station = roki_request.arrivals.stations.add()
     arrival_station.station_id = "StopArea:OCE87391003" #paris montparnasse
 
     dt = datetime.datetime.fromisoformat('2024-11-21 06:00:00+00:00')
     timestamp = dt.timestamp()
-    roki_request.constraints.datetime.seconds = int(timestamp)
+    roki_request.datetime.seconds = int(timestamp)
 
     resp = send_request(roki_request)
     print("Lannion - Paris")
@@ -29,13 +29,13 @@ def lannion_paris():
 
 def nantes_marseille():
     roki_request = roki_pb2.RangeRequest()
-    departure_box = roki_request.constraints.departures.stations_within.add()
+    departure_box = roki_request.departures.stations_within.add()
     # all stations within 10km around Nantes center
     departure_box.center.lat =  47.2186371
     departure_box.center.lon =  -1.5541362
     departure_box.distance.meters = 10000
 
-    arrival_box = roki_request.constraints.arrivals.stations_within.add()
+    arrival_box = roki_request.arrivals.stations_within.add()
      # all stations within 10km around Marseille center
     arrival_box.center.lat =   43.2961743
     arrival_box.center.lon =   5.3699525
@@ -43,7 +43,7 @@ def nantes_marseille():
 
     dt = datetime.datetime.fromisoformat('2024-11-21 06:00:00+00:00')
     timestamp = dt.timestamp()
-    roki_request.constraints.datetime.seconds = int(timestamp)
+    roki_request.datetime.seconds = int(timestamp)
 
     resp = send_request(roki_request)
     print("Nantes - Marseille")
@@ -58,15 +58,15 @@ def nantes_marseille():
 
 def service_alert_on_trip():
     roki_request = roki_pb2.RangeRequest()
-    departure_stop = roki_request.constraints.departures.stops.add()
+    departure_stop = roki_request.departures.stops.add()
     departure_stop.stop_id = "StopPoint:OCETrain TER-87481002" #Nantes
 
-    arrival_stop = roki_request.constraints.arrivals.stops.add()
+    arrival_stop = roki_request.arrivals.stops.add()
     arrival_stop.stop_id = "StopPoint:OCETrain TER-87486571" #Saint-Gilles-Croix-de-Vie
 
     dt = datetime.datetime.fromisoformat('2024-11-22 15:30:00+00:00')
     timestamp = dt.timestamp()
-    roki_request.constraints.datetime.seconds = int(timestamp)
+    roki_request.datetime.seconds = int(timestamp)
 
     # limit the range to obtain only one journey
     roki_request.range_duration.seconds = 10*60
@@ -92,7 +92,7 @@ def service_alert_on_trip():
 
     dt = datetime.datetime.fromisoformat('2024-11-25 15:30:00+00:00')
     timestamp = dt.timestamp()
-    roki_request.constraints.datetime.seconds = int(timestamp)
+    roki_request.datetime.seconds = int(timestamp)
 
     resp = send_request(roki_request)
     print("Nantes - Saint-Gilles-Croix-de-Vie on 2024-11-25")
@@ -114,15 +114,15 @@ def service_alert_on_trip():
 
 def service_alert_on_stop_area():
     roki_request = roki_pb2.RangeRequest()
-    departure_station = roki_request.constraints.departures.stations.add()
+    departure_station = roki_request.departures.stations.add()
     departure_station.station_id = "StopArea:OCE87175000" #St Dizier 
 
-    arrival_station = roki_request.constraints.arrivals.stations.add()
+    arrival_station = roki_request.arrivals.stations.add()
     arrival_station.station_id = "StopArea:OCE87113001" #Paris Est
 
     dt = datetime.datetime.fromisoformat('2024-11-22 15:32:00+00:00')
     timestamp = dt.timestamp()
-    roki_request.constraints.datetime.seconds = int(timestamp)
+    roki_request.datetime.seconds = int(timestamp)
 
     # limit the range to obtain only one journey
     roki_request.range_duration.seconds = 10*60
@@ -148,7 +148,7 @@ def service_alert_on_stop_area():
 
     dt = datetime.datetime.fromisoformat('2024-11-25 15:30:00+00:00')
     timestamp = dt.timestamp()
-    roki_request.constraints.datetime.seconds = int(timestamp)
+    roki_request.datetime.seconds = int(timestamp)
 
     resp = send_request(roki_request)
     print("St Dizier  - Paris Est  on 2024-11-25")
@@ -169,21 +169,21 @@ def service_alert_on_stop_area():
 
 def deleted_trip_update():
     roki_request = roki_pb2.RangeRequest()
-    departure_station = roki_request.constraints.departures.stations.add()
+    departure_station = roki_request.departures.stations.add()
     departure_station.station_id = "StopArea:OCE87613141" #Gourdon 
 
-    arrival_stop = roki_request.constraints.arrivals.stops.add()
+    arrival_stop = roki_request.arrivals.stops.add()
     arrival_stop.stop_id = "StopPoint:OCEINTERCITES-87613000" #Cahors
 
     dt = datetime.datetime.fromisoformat('2024-11-21 16:46:00+00:00')
     timestamp = dt.timestamp()
-    roki_request.constraints.datetime.seconds = int(timestamp)
+    roki_request.datetime.seconds = int(timestamp)
 
     # limit the range to 10mn obtain only one journey
     roki_request.range_duration.seconds = 60*60
 
     # we want to compute journeys WITHOUT the realtime schedule from trip_updates
-    roki_request.constraints.realtime_level = roki_pb2.RealtimeLevel.Base
+    roki_request.config.realtime_level = roki_pb2.JourneyConfig.RealtimeLevel.BASE
     
     resp = send_request(roki_request)
     print("Gourdon  - Cahors Base schedule")
@@ -202,7 +202,7 @@ def deleted_trip_update():
     ####################
 
      # we now want to compute journeys WITH the realtime schedule from trip_updates
-    roki_request.constraints.realtime_level = roki_pb2.RealtimeLevel.Realtime
+    roki_request.config.realtime_level = roki_pb2.JourneyConfig.RealtimeLevel.REALTIME
 
     resp = send_request(roki_request)
     print("Gourdon  - Cahors Realtime schedule")
@@ -219,10 +219,10 @@ def send_request(roki_request):
 
     http_resp = requests.get(url, data = data)
 
-    roki_resp = roki_pb2.Response()
+    roki_resp = roki_pb2.RangeResponse()
     roki_resp.ParseFromString(http_resp.content)
 
-    resp = roki_response.parse_roki_resp(roki_resp)
+    resp = roki_response.parse_roki_resp(roki_resp.journeys)
     return resp
 
 lannion_paris()
