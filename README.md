@@ -12,7 +12,7 @@ pipenv install
 
 Launch the docker containers
 ```bash
-docker-compose up
+docker compose up
 ```
 
 Send some requests request
@@ -20,7 +20,7 @@ Send some requests request
 pipenv run python demo.py
 ```
 
-The docker-compose will launch:
+The docker compose will launch:
  - a container with roki that can be reached on localhost:3000
  - a container with simple http server that provides realtime gtfs-rt feeds to roki
  - a prometheus server that scrapes metrics from roki. Its user interface is served on localhost:9090
