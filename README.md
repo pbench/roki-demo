@@ -2,9 +2,9 @@
 
 ## Setup
 
-Install pip for python dependencies
+Install python dependencies
 ```bash
-pip install pipenv --user
+sudo apt install pipenv
 pipenv install
 ```
 
